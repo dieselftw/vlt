@@ -1,0 +1,24 @@
+[package]
+name = "vlt"
+version = "0.1.0"
+edition = "2024"
+description = "Fast offline-first CLI for managing .env files across environments"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/dieselftw/vlt"
+homepage = "https://github.com/dieselftw/vlt"
+documentation = "https://docs.rs/vlt"
+keywords = ["dotenv", "env", "cli", "developer-tools"]
+categories = ["command-line-utilities", "development-tools"]
+rust-version = "1.85"
+exclude = ["examples/**", "target/**"]
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4.5", features = ["derive"] }
+dialoguer = "0.11"
+owo-colors = "4"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+walkdir = "2"
