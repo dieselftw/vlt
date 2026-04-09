@@ -51,6 +51,10 @@ impl EnvFile {
             .with_context(|| format!("failed to write {}", path.display()))
     }
 
+    pub fn save(&self, path: &Path) -> Result<()> {
+        self.save_with_header(path, None)
+    }
+
     pub fn insert_missing(&mut self, key: &str) -> bool {
         if self.values.contains_key(key) {
             return false;

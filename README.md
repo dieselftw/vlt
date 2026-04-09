@@ -90,7 +90,15 @@ vlt create staging
 vlt create prod
 ```
 
-### 4. Activate an environment
+### 4. Generate an example file
+
+```bash
+vlt generate
+```
+
+This writes `.env.example` with all known keys and comment metadata from `.vlt/env.rules`.
+
+### 5. Activate an environment
 
 ```bash
 vlt use dev
@@ -99,7 +107,7 @@ vlt use staging
 
 This copies `.vlt/env.<name>` to `.env` and records the active environment in `.vlt/config.toml`.
 
-### 5. Inspect status
+### 6. Inspect status
 
 ```bash
 vlt status
@@ -111,6 +119,40 @@ This shows:
 - available environments
 - missing values in the active environment
 - drift between `.env` and `.vlt/env.rules`
+
+### 7. Compare environments
+
+```bash
+vlt diff dev prod
+```
+
+This compares keys only and never prints secret values.
+
+### 8. Sync missing keys
+
+```bash
+vlt sync prod staging
+```
+
+This adds keys that exist in the source environment but not in the target environment. New keys are added as blank placeholders so you can fill them safely.
+
+### 9. Validate the active `.env`
+
+```bash
+vlt validate
+```
+
+This checks required values, booleans, ints, floats, and enums against `.vlt/env.rules`.
+
+### 10. Import or export environment files
+
+```bash
+vlt import staging ./ops/staging.env
+vlt export staging ./exports/staging.env
+```
+
+`import` loads values from an existing env file into `.vlt/env.<name>` and updates project templates for any new keys.
+`export` writes `.vlt/env.<name>` to a standalone env file at the path you choose.
 
 ## Testing with the included TypeScript fixture
 

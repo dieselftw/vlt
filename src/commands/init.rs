@@ -32,8 +32,9 @@ pub fn run() -> Result<()> {
         rules.save(&rules_path)?;
     }
 
-    gitignore::ensure_vlt_patterns(&gitignore_path)?;
-    output::print_line(Icon::Success, "Added to .gitignore");
+    if gitignore::ensure_vlt_patterns(&gitignore_path)? {
+        output::print_line(Icon::Success, "Updated `.gitignore`.");
+    }
 
     output::print_line(Icon::Success, format!("Initialized vlt for a {project_type} project"));
     if should_scan_now()? {

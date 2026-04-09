@@ -35,6 +35,20 @@ pub struct VarRule {
     pub values: Option<Vec<String>>,
 }
 
+impl VarRule {
+    pub fn discovered() -> Self {
+        Self {
+            rule_type: RuleType::String,
+            required: false,
+            default: None,
+            description: Some("".to_owned()),
+            min: None,
+            max: None,
+            values: None,
+        }
+    }
+}
+
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct VltRules {
     #[serde(default)]

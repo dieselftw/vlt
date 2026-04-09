@@ -11,7 +11,7 @@ pub fn run() -> Result<()> {
     project::ensure_initialized(&root)?;
     let config = VltConfig::load_or_default(&root.join(".vlt/config.toml"))?;
     let rules = VltRules::load_or_default(&root.join(".vlt/env.rules"))?;
-    let available_envs = discover_envs(&root)?;
+    let available_envs = project::available_envs(&root)?;
 
     match &config.active_env {
         Some(active) => output::print_line(Icon::Info, format!("Active environment: {active}")),
@@ -63,26 +63,4 @@ pub fn run() -> Result<()> {
     }
 
     Ok(())
-}
-
-fn discover_envs(root: &std::path::Path) -> Result<Vec<String>> {
-    let mut envs = Vec::new();
-    let vlt_dir = root.join(".vlt");
-
-    if !vlt_dir.exists() {
-        return Ok(envs);
-    }
-
-    for entry in std::fs::read_dir(vlt_dir).context("failed to read .vlt directory")? {
-        let entry = entry.context("failed to read .vlt directory entry")?;
-        if let Some(name) = entry.file_name().to_str()
-            && let Some(env_name) = name.strip_prefix("env.")
-            && env_name != "rules"
-        {
-            envs.push(env_name.to_owned());
-        }
-    }
-
-    envs.sort();
-    Ok(envs)
 }

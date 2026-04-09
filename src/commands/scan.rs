@@ -5,7 +5,7 @@ use anyhow::{Context, Result, bail};
 use dialoguer::{Select, theme::ColorfulTheme};
 
 use crate::models::env_file::EnvFile;
-use crate::models::rules::{RuleType, VarRule, VltRules};
+use crate::models::rules::{VarRule, VltRules};
 use crate::utils::output::{self, Icon};
 use crate::utils::project;
 use crate::utils::scanner;
@@ -150,13 +150,5 @@ fn choose_vars_to_add(missing: &[String], apply: bool) -> Result<Vec<String>> {
 }
 
 fn discovered_rule() -> VarRule {
-    VarRule {
-        rule_type: RuleType::String,
-        required: false,
-        default: None,
-        description: Some("".to_owned()),
-        min: None,
-        max: None,
-        values: None,
-    }
+    VarRule::discovered()
 }

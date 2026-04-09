@@ -1,6 +1,6 @@
 [package]
 name = "vlt"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Fast offline-first CLI for managing .env files across environments"
 license = "MIT"

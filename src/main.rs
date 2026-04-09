@@ -3,6 +3,7 @@ mod models;
 mod utils;
 
 use clap::{Args, Parser, Subcommand};
+use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
 #[command(name = "vlt", version, about = "Manage .env files across environments")]
@@ -21,6 +22,8 @@ enum Commands {
     Status,
     Diff(DiffArgs),
     Sync(SyncArgs),
+    Import(ImportArgs),
+    Export(ExportArgs),
     Validate,
 }
 
@@ -52,6 +55,22 @@ struct SyncArgs {
     target: String,
 }
 
+#[derive(Args, Debug)]
+struct ImportArgs {
+    #[arg(help = "Environment name")]
+    env_name: String,
+    #[arg(help = "Path to an env file to import")]
+    input: PathBuf,
+}
+
+#[derive(Args, Debug)]
+struct ExportArgs {
+    #[arg(help = "Environment name")]
+    env_name: String,
+    #[arg(help = "Output path for the exported env file")]
+    output: PathBuf,
+}
+
 fn main() {
     if let Err(error) = try_main() {
         utils::output::print_error(&error);
@@ -71,6 +90,8 @@ fn try_main() -> anyhow::Result<()> {
         Commands::Status => commands::status::run(),
         Commands::Diff(args) => commands::diff::run(&args.env1, &args.env2),
         Commands::Sync(args) => commands::sync::run(&args.source, &args.target),
+        Commands::Import(args) => commands::import_env::run(&args.env_name, &args.input),
+        Commands::Export(args) => commands::export_env::run(&args.env_name, &args.output),
         Commands::Validate => commands::validate::run(),
     }
 }
