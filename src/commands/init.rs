@@ -51,7 +51,7 @@ fn should_scan_now() -> Result<bool> {
         return Ok(false);
     }
 
-    let options = ["Scan all variables", "Skip for now"];
+    let options = ["  Scan all variables", "  Skip for now"];
     let selection = Select::with_theme(&ColorfulTheme::default())
         .with_prompt("Choose the first setup step")
         .items(&options)

@@ -123,7 +123,7 @@ fn choose_vars_to_add(missing: &[String], apply: bool) -> Result<Vec<String>> {
             continue;
         }
 
-        let options = ["Yes", "No", "Add all remaining"];
+        let options = ["  Yes", "  No", "  Add all remaining"];
         let selection = Select::with_theme(&theme)
             .with_prompt(format!(
                 "{} Add or sync {} to .env.base?",
