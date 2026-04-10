@@ -4,7 +4,7 @@ use std::path::Path;
 
 use anyhow::{Context, Result};
 
-const REQUIRED_PATTERNS: [&str; 5] = [".env", ".env.*", "!.env.example", "!.env.base", "vlt"];
+const REQUIRED_PATTERNS: [&str; 5] = [".env", ".env.*", "!.env.example", "!.env.base", ".vlt"];
 
 pub fn ensure_vlt_patterns(path: &Path) -> Result<bool> {
     let mut lines = if path.exists() {
