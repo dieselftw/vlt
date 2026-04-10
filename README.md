@@ -1,6 +1,24 @@
-# vlt: Manage envs locally
+<h1 align=center>⚡<code>vlt</code>⚡</h1>
 
-`vlt` is a blazing fast, offline-first Rust CLI for managing `.env` files across environments using plain text files and project-local rules.
+<div align=center>
+  <a href=https://crates.io/dieselftw/vlt>
+    <img src=https://img.shields.io/crates/v/vlt.svg alt="crates.io version">
+  </a>
+    
+  <a href=https://github.com/dieselftw/vlt/.github/workflows/ci.yaml>
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dieselftw/vlt/.github%2Fworkflows%2Fci.yml">
+  </a>
+</div>
+
+<h3 align=center> Rust CLI for managing .env files across environments.
+<br><br>
+
+<code>cargo install vlt</code>
+</h3>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/52bbfd04-0981-4905-8bf9-6b2a4fbd77bc" alt="vlt demo" width="650" />
+</div>
 
 ## Using vlt
 
